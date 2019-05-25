@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- ========================== 自定义输出格式说明================================ -->
+	<!-- %m 输出代码中指定的消息 -->	
+	<!-- %p 输出优先级，即DEBUG，INFO，WARN，ERROR，FATAL -->
+	<!-- %r 输出自应用启动到输出该log信息耗费的毫秒数  -->
+	<!-- %c 输出所属的类目，通常就是所在类的全名 -->
+	<!-- %t 输出产生该日志事件的线程名 -->
+	<!-- %n 输出一个回车换行符，Windows平台为“/r/n”，Unix平台为“/n” -->
+	<!-- %d 输出日志时间点的日期或时间，默认格式为ISO8601，也可以在其后指定格式，比如：%d{yyy MMM dd HH:mm:ss,SSS}，输出类似：2002年10月18日 22：10：28，921  -->
+	<!-- %l 输出日志事件的发生位置，包括类目名、发生的线程，以及在代码中的行数。举例：Testlog4.main(TestLog4.java:10)  -->
+	<!-- ========================================================================== -->
+
+	<!-- ========================== 输出方式说明================================ -->
+	<!-- Log4j提供的appender有以下几种:  -->
+	<!-- org.apache.log4j.ConsoleAppender(控制台),  -->
+	<!-- org.apache.log4j.FileAppender(文件),  -->
+	<!-- org.apache.log4j.DailyRollingFileAppender(每天产生一个日志文件), -->
+	<!-- org.apache.log4j.RollingFileAppender(文件大小到达指定尺寸的时候产生一个新的文件),  -->
+	<!-- org.apache.log4j.WriterAppender(将日志信息以流格式发送到任意指定的地方)   -->
+	<!-- ========================================================================== -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%p][%d{yyyy-MM-dd HH\:mm\:ss SSS}] %l - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- 所有异常信息 -->
+	<appender name="exception" class="org.apache.log4j.RollingFileAppender">
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="300MB" />
+		<param name="MaxBackupIndex" value="7" />
+		<param name="File" value="log/exception.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%p][%d{yyyy-MM-dd HH\:mm\:ss SSS}] %l - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="ERROR" />
+			<param name="levelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+	<!-- 其余all信息 -->
+	<appender name="all" class="org.apache.log4j.RollingFileAppender">
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="100MB" />
+		<param name="MaxBackupIndex" value="7" />
+		<param name="File" value="log/all.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%p][%d{yyyy-MM-dd HH\:mm\:ss SSS}] %l - %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- crawler信息 -->
+	<appender name="crawler" class="com.aft.logger.MyCrawlerRollingFileAppender">
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="300MB" />
+		<param name="MaxBackupIndex" value="30" />
+		<param name="File" value="log/crawler.log" />
+		<param name="savePath" value="log/impl" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%p][%d{yyyy-MM-dd HH\:mm\:ss SSS}] %l - %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- bean信息 -->
+	<appender name="bean" class="org.apache.log4j.RollingFileAppender">
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="100MB" />
+		<param name="MaxBackupIndex" value="7" />
+		<param name="File" value="log/bean.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%p][%d{yyyy-MM-dd HH\:mm\:ss SSS}] %l - %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- proxy信息 -->
+	<appender name="proxy" class="org.apache.log4j.RollingFileAppender">
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="100MB" />
+		<param name="MaxBackupIndex" value="7" />
+		<param name="File" value="log/proxy.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%p][%d{yyyy-MM-dd HH\:mm\:ss SSS}] %l - %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- result信息 -->
+	<appender name="result" class="org.apache.log4j.RollingFileAppender">
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="300MB" />
+		<param name="MaxBackupIndex" value="30" />
+		<param name="File" value="log/result.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%p][%d{yyyy-MM-dd HH\:mm\:ss SSS}] %l - %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- thread信息 -->
+	<appender name="thread" class="org.apache.log4j.RollingFileAppender">
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="100MB" />
+		<param name="MaxBackupIndex" value="7" />
+		<param name="File" value="log/thread.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%p][%d{yyyy-MM-dd HH\:mm\:ss SSS}] %l - %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- app信息 -->
+	<appender name="app" class="org.apache.log4j.RollingFileAppender">
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="100MB" />
+		<param name="MaxBackupIndex" value="30" />
+		<param name="File" value="log/thread.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%p][%d{yyyy-MM-dd HH\:mm\:ss SSS}] %l - %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- saveFile信息 -->
+	<appender name="saveFile" class="com.aft.logger.MyCrawlerRollingFileAppender">
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="200MB" />
+		<param name="MaxBackupIndex" value="5" />
+		<param name="File" value="log/all.log" />
+		<param name="savePath" value="resource/file/result/yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%m%n" />
+		</layout>
+	</appender>
+
+	<logger name="com.aft.saveFile" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="saveFile" />		
+	</logger>
+	
+	<logger name="com.aft" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="all" />
+		<appender-ref ref="console" />
+		<appender-ref ref="exception" />
+	</logger>
+
+	<logger name="kafka" additivity="false">
+		<level value="ERROR" />
+		<appender-ref ref="console" />
+		<appender-ref ref="exception" />
+	</logger>
+	
+	<logger name="com.aft.crawl.crawler" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="crawler" />
+		<appender-ref ref="console" />
+		<appender-ref ref="exception" />
+	</logger>
+	
+	<logger name="com.aft.crawl.bean" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="console" />
+		<appender-ref ref="bean" />
+		<appender-ref ref="exception" />
+	</logger>
+	
+	<logger name="com.aft.crawl.proxy" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="proxy" />
+		<appender-ref ref="console" />
+		<appender-ref ref="exception" />
+	</logger>
+	
+	<logger name="com.aft.crawl.result" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="result" />
+		<appender-ref ref="console" />
+		<appender-ref ref="exception" />
+	</logger>
+	
+	<logger name="com.aft.crawl.thread" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="thread" />
+		<appender-ref ref="console" />
+		<appender-ref ref="exception" />
+	</logger>
+	
+	<logger name="com.aft.app" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="app" />
+		<appender-ref ref="console" />
+		<appender-ref ref="exception" />
+	</logger>
+	
+	<root>
+		<priority value="INFO" />
+		<appender-ref ref="console" />
+		<appender-ref ref="exception" />		
+	</root>
+</log4j:configuration>

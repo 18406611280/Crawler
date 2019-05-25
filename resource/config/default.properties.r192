@@ -1,0 +1,53 @@
+# \u6e38\u89c8\u5668\u6807\u8bc6
+user-agent = Mozilla/5.0 (Windows NT 6.1; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0
+
+# \u662f\u5426\u672c\u5730\u6d4b\u8bd5
+local_test = true
+
+# \u672c\u5730\u6d4b\u8bd5\u7c7b\u578b
+test_pageTyge = PUT994
+
+#\u4EE3\u7406\u65B9\u5F0F\\1:\u5FEB\u4EE3\u7406 2:VPS\u4EE3\u7406 3:\u5168\u7F51\u4EE3\u7406
+proxyIp_type = 1
+
+# \u91c7\u96c6\u8005
+# ALL-ALL\u8868\u793a\u5168\u90e8(\u614e\u7528)
+#operator_name = 243Op-internal_1
+operator_name = 243Op-EK
+
+# \u83b7\u53d6\u64cd\u4f5c\u8005\u4fe1\u606f
+#\u751f\u4ea7\u5e93
+common_info_url = http://120.76.199.56:8088/crawler/common/query.action
+#common_info_url = http://192.168.0.72:5555/crawler/common/query.action
+#\u672c\u5730\u6d4b\u8bd5`
+#common_info_url = http://127.0.0.1:8085/crawler/common/query.action
+
+# \u662f\u5426\u6253\u5f00socket
+socket_server_open = false
+
+# \u4fdd\u5b58\u6570\u636e
+socket_server_port = 55555
+
+# \u4fdd\u5b58\u6570\u636e
+socket_end_str = |end|
+
+
+post_caapp_other = true
+
+post_caapp_url = http://192.168.0.81/aftInterface/jxdca/saveAll.do?username=fltchg&needKey=3201
+
+post_cheapair_open = true
+
+post_cheapair_Url = http://127.0.0.1:8085/crawler/cheapairFlightLine/save.action
+
+# browser \u63d2\u4ef6\u7c7b\u578b swt/jweb
+browser_plugin = jweb
+
+
+# \u4ee5\u4e0b swt\u6709\u6548
+# Mozilla/IE
+browser_type = Mozilla_
+
+# xulrunner
+#xulrunner_name = xulrunner-31.0b9.en-US.win32
+xulrunner_name = xulrunner-1.9.2.19.en-US.win32
